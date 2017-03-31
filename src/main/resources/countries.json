@@ -1,0 +1,28 @@
+{
+  "countries": [
+    {
+      "attendeeCount": 1,
+      "attendees": [
+        "test1@email.com"
+      ],
+      "name": "Ireland",
+      "startDate": "2017-04-29"
+    },
+    {
+      "attendeeCount": 0,
+      "attendees": [],
+      "name": "United States",
+      "startDate": null
+    },
+    {
+      "attendeeCount": 3,
+      "attendees": [
+        "test2@email.com",
+        "test3@email.com",
+        "test4@email.com"
+      ],
+      "name": "Spain",
+      "startDate": "2017-04-28"
+    }
+  ]
+}
