@@ -2,7 +2,7 @@
 
 Application has been created for technical test purpose during interview process.
 
-Application reads inbound API called /partners which contains list of employeers available for meetings with specified dates and location. Every person is described by name, surname and email as below.
+Application reads inbound API called **/partners** which contains list of employeers available for meetings with specified dates and location. Every person is described by name, surname and email as below.
 
 ```json
 {
