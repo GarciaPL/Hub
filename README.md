@@ -70,3 +70,5 @@ Logic is invoked by hitting endpoint **/start**
 Code released under the  Apache License 2.0. Docs released under Creative Commons.
 
 [![ghit.me](https://ghit.me/badge.svg?repo=GarciaPL/Hub)](https://ghit.me/repo/GarciaPL/Hub)
+
+[![Build Status](https://travis-ci.org/GarciaPL/Hub.svg?branch=master)](https://travis-ci.org/GarciaPL/Hub)
