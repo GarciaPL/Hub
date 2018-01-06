@@ -1,8 +1,7 @@
 package ie.hub.interview.model;
 
-import org.joda.time.DateTime;
-
 import java.util.List;
+import org.joda.time.DateTime;
 
 public class Partner {
 

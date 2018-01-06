@@ -30,11 +30,13 @@ public class StartController {
     @RequestMapping("/start")
     public String sendRequest() throws JsonProcessingException {
 
-        ResponseEntity<Partners> partnersResponse = restTemplate.getForEntity(createUrl(hubProperties.getInbound(), hubProperties.getKey()), Partners.class);
+        ResponseEntity<Partners> partnersResponse = restTemplate
+                .getForEntity(createUrl(hubProperties.getInbound(), hubProperties.getKey()), Partners.class);
 
         Countries countries = processingService.process(partnersResponse.getBody());
 
-        return restTemplate.postForObject(createUrl(hubProperties.getOutbound(), hubProperties.getKey()), createOutboundRequest(countries), String.class);
+        return restTemplate.postForObject(createUrl(hubProperties.getOutbound(), hubProperties.getKey()), createOutboundRequest(countries),
+                String.class);
     }
 
     private String createUrl(String path, String key) {
@@ -42,7 +44,7 @@ public class StartController {
     }
 
     private HttpEntity<Object> createOutboundRequest(Countries countries) {
-        return new HttpEntity<Object>(countries, createHttpHeaders());
+        return new HttpEntity<>(countries, createHttpHeaders());
     }
 
     private HttpHeaders createHttpHeaders() {

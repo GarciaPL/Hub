@@ -3,7 +3,20 @@ package ie.hub.interview.service;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import ie.hub.interview.model.*;
+import ie.hub.interview.model.Countries;
+import ie.hub.interview.model.Country;
+import ie.hub.interview.model.Participant;
+import ie.hub.interview.model.Partner;
+import ie.hub.interview.model.Partners;
+import java.lang.invoke.MethodHandles;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.joda.time.Interval;
@@ -11,10 +24,6 @@ import org.joda.time.base.AbstractInstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
-import java.lang.invoke.MethodHandles;
-import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class ProcessingServiceImpl implements ProcessingService {
@@ -68,7 +77,8 @@ public class ProcessingServiceImpl implements ProcessingService {
                                 sortDateRangesByFirstParticipantCount(sortedDateRangesByParticipantsCount, firstParticipant);
                         if (!sortByDatesWithEqualParticipantsCount.isEmpty()) {
                             countryItem.setAttendeeCount(sortByDatesWithEqualParticipantsCount.get(0).getValue().getCount());
-                            countryItem.setAttendees(Lists.newArrayList(sortByDatesWithEqualParticipantsCount.get(0).getValue().getEmails()));
+                            countryItem
+                                    .setAttendees(Lists.newArrayList(sortByDatesWithEqualParticipantsCount.get(0).getValue().getEmails()));
                             countryItem.setStartDate(sortByDatesWithEqualParticipantsCount.get(0).getKey().getStart());
                         } else {
                             enrichCountryWithNoParticipants(countryItem);
@@ -88,6 +98,7 @@ public class ProcessingServiceImpl implements ProcessingService {
     }
 
     public class IntervalStartComparator implements Comparator<Interval> {
+
         @Override
         public int compare(Interval x, Interval y) {
             return x.getStart().compareTo(y.getStart());
@@ -95,7 +106,7 @@ public class ProcessingServiceImpl implements ProcessingService {
     }
 
     private List<Map.Entry<Interval, Participant>> sortDateRangesByFirstParticipantCount(Map<Interval, Participant> sortedDateRanges,
-                                                                                         final Participant firstParticipant) {
+            final Participant firstParticipant) {
         return sortedDateRanges.entrySet().stream()
                 .filter(entry -> entry.getValue().getCount().equals(firstParticipant.getCount()))
                 .sorted(Comparator.comparing(o -> o.getKey().getStart())).collect(Collectors.toList());

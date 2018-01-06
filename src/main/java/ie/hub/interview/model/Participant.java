@@ -3,6 +3,7 @@ package ie.hub.interview.model;
 import java.util.Set;
 
 public class Participant {
+
     private Integer count;
     private Set<String> emails;
 
