@@ -9,7 +9,6 @@ import ie.hub.interview.model.Participant;
 import ie.hub.interview.model.Partner;
 import ie.hub.interview.model.Partners;
 import java.lang.invoke.MethodHandles;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -33,10 +32,10 @@ public class ProcessingServiceImpl implements ProcessingService {
     @Override
     public Countries process(Partners partners) {
 
-        Countries countries = new Countries();
-        ArrayList<Country> countriesList = Lists.newArrayList();
+        List<Country> countriesList = Lists.newArrayList();
 
         Map<String, List<Partner>> partnersByCountry = partners.getPartners().stream().collect(Collectors.groupingBy(Partner::getCountry));
+
         for (Map.Entry<String, List<Partner>> countryEntry : partnersByCountry.entrySet()) {
             String country = countryEntry.getKey();
             List<Partner> partnersOfCountry = countryEntry.getValue();
@@ -44,6 +43,7 @@ public class ProcessingServiceImpl implements ProcessingService {
             List<DateTime> availableDatesOfCountry = partnersOfCountry.stream()
                     .flatMap(p -> p.getAvailableDates().stream())
                     .collect(Collectors.toList());
+
             if (!availableDatesOfCountry.isEmpty()) {
                 DateTime minDate = getMinAvailableDate(availableDatesOfCountry);
                 DateTime maxDate = getMaxAvailableDate(availableDatesOfCountry);
@@ -92,9 +92,7 @@ public class ProcessingServiceImpl implements ProcessingService {
             }
         }
 
-        countries.setCountries(countriesList);
-
-        return countries;
+        return Countries.builder().countries(countriesList).build();
     }
 
     public class IntervalStartComparator implements Comparator<Interval> {

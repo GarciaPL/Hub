@@ -1,36 +1,16 @@
 package ie.hub.interview.config;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "api")
+@Getter
+@Setter
 public class HubProperties {
 
     private String key;
     private String inbound;
     private String outbound;
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    public String getInbound() {
-        return inbound;
-    }
-
-    public void setInbound(String inbound) {
-        this.inbound = inbound;
-    }
-
-    public String getOutbound() {
-        return outbound;
-    }
-
-    public void setOutbound(String outbound) {
-        this.outbound = outbound;
-    }
 
 }

@@ -33,7 +33,9 @@ public class StartController {
         ResponseEntity<Partners> partnersResponse = restTemplate
                 .getForEntity(createUrl(hubProperties.getInbound(), hubProperties.getKey()), Partners.class);
 
-        Countries countries = processingService.process(partnersResponse.getBody());
+        Partners partners = partnersResponse.getBody();
+
+        Countries countries = processingService.process(partners);
 
         return restTemplate.postForObject(createUrl(hubProperties.getOutbound(), hubProperties.getKey()), createOutboundRequest(countries),
                 String.class);
