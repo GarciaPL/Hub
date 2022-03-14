@@ -23,7 +23,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <guava.version>21.0</guava.version>
-        <jackson.datatype.joda>2.8.11</jackson.datatype.joda>
+        <jackson.datatype.joda>2.13.0</jackson.datatype.joda>
         <lombok.version>1.18.10</lombok.version>
     </properties>
 
